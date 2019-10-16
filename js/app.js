@@ -3,8 +3,18 @@ document.addEventListener("DOMContentLoaded", function() {
   const key = 'BB1eByfRXLelMm1RuJTtTX9pcIF5EztFLQRO5aHT';
   const header = document.querySelector('header');
   let dayImage;
-  header.style.height = '100vh';
-  header.style.height = '100vh';
+  
+  let imageBanner = document.createElement('div');
+  let img = document.createElement('img');
+  //pospinać style w jeden obiekt
+  imageBanner.style.height = '100%';
+  imageBanner.style.width = '50%';
+  imageBanner.classList.add('imageBanner');
+  img.style.width = '100%';
+  img.style.height = '100%';
+  imageBanner.appendChild(img);
+  header.appendChild(imageBanner);
+
   fetch(api+key)
     .then(resp => resp.json())
     .then(data => {
@@ -12,12 +22,9 @@ document.addEventListener("DOMContentLoaded", function() {
       console.log(data.copyright);
       console.log(data.url);
       dayImage = data.url;
+      console.log(dayImage);
+      img.src = dayImage;
     })
-  console.log(dayImage);
-  header.style.backgroundColor = 'black';
-  header.style.backgroundImage = 'url("https://apod.nasa.gov/apod/image/1910/MilkyWayAbove_Guerra_960.jpg")';
-  header.style.backgroundRepeat = 'no-repeat';
-  header.style.backgroundPosition = 'center';
 });
 
 
