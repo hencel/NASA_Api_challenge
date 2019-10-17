@@ -6,5 +6,24 @@ body {
   header {
     height: 100vh;
     background-color: black;
+    color: white;
+    .imageBannerLeft {
+      float: left;
+    }
+    .imageBannerRight {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      h2 {
+        font-size: 5em;
+      }
+    }
+    &:after {
+      content: '';
+      clear: both;
+      display: block;
+    }
   }
 }
