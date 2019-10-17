@@ -3,17 +3,28 @@ document.addEventListener("DOMContentLoaded", function() {
   const key = 'BB1eByfRXLelMm1RuJTtTX9pcIF5EztFLQRO5aHT';
   const header = document.querySelector('header');
   let dayImage;
-  
-  let imageBanner = document.createElement('div');
-  let img = document.createElement('img');
-  //pospinać style w jeden obiekt
-  imageBanner.style.height = '100%';
-  imageBanner.style.width = '50%';
-  imageBanner.classList.add('imageBanner');
+ 
+  let imageBannerLeft = document.createElement('div'); //div to place a image of the day
+  let imageBannerRight = document.createElement('div'); //div to place description of the header
+  let imageBannerRightMain = document.createElement('h2');
+  let imageBannerRightSecond = document.createElement('h2');
+  let img = document.createElement('img'); //image of the day
+
+  imageBannerLeft.style.height = '100%'; 
+  imageBannerLeft.style.width = '50%';
+  imageBannerLeft.classList.add('imageBannerLeft');
   img.style.width = '100%';
   img.style.height = '100%';
-  imageBanner.appendChild(img);
-  header.appendChild(imageBanner);
+  imageBannerLeft.appendChild(img); //append img to image of the day frame
+  header.appendChild(imageBannerLeft); //append frame to header
+  
+  imageBannerRight.classList.add('imageBannerRight');
+  imageBannerRightMain.innerText = 'NASA API Challenge';
+  imageBannerRightSecond.innerText = 'made by Zbyszek';
+  imageBannerRight.appendChild(imageBannerRightMain);
+  imageBannerRight.appendChild(imageBannerRightSecond);
+  
+  header.appendChild(imageBannerRight);
 
   fetch(api+key)
     .then(resp => resp.json())
