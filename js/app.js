@@ -26,16 +26,44 @@ document.addEventListener("DOMContentLoaded", function() {
   
   header.appendChild(imageBannerRight);
 
-  fetch(api+key)
+  fetch(api+key)  //using fetch to get image of the day from NASA Api
     .then(resp => resp.json())
     .then(data => {
-      console.log(data)
-      console.log(data.copyright);
-      console.log(data.url);
       dayImage = data.url;
-      console.log(dayImage);
       img.src = dayImage;
     })
+  
+  const search = document.querySelector('input[name="searchButton"]'); 
+  let userData;
+  search.addEventListener('click', search => {  //add listener to click button
+    search.preventDefault();
+    if(document.querySelector('.gallery').contains(document.querySelector('.galleryArea'))) { //check if old gallery exist, if yes, delete it
+      document.querySelector('.galleryArea').remove();
+    } 
+    const galleryArea = document.createElement('div'); //create container for photos
+    galleryArea.classList.add('galleryArea');
+    document.querySelector('.gallery').appendChild(galleryArea); //append container to gallery
+
+    userData = document.querySelector('input[name="searchArea"]').value.toString(); //get user search data 
+
+    fetch(`https://images-api.nasa.gov/search?q=${userData}`) //fetch photos from NASA Api based on user's search
+    .then(resp => resp.json())
+    .then(data => {
+      
+      console.log(data);
+      data.collection.items.forEach(element => {  //iterate through NASA Api library photos and videos
+        const galleryArea = document.querySelector('.galleryArea');
+        if(element.data[0].media_type === 'image') { //looking for only images (not videos)
+          console.log(element.data[0].media_type);
+          for(let i=0; i<1; i++) { //make new img for each photos from NASA
+            const newImg = document.createElement('img'); //create
+            newImg.classList.add('galleryItem'); //add class
+            newImg.src = element.links[0].href; //add link to photo
+            galleryArea.appendChild(newImg); //append to gallery Area
+          } 
+        }
+      });  
+    })
+  })
+
 });
-
-
