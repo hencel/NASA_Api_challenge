@@ -26,4 +26,22 @@ body {
       display: block;
     }
   }
+  .gallery {
+    form {
+      padding-top: 2rem;
+      height: 200px;
+      text-align: center;
+    }
+    .galleryArea {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      flex-wrap: wrap;
+      img {
+        height: auto;
+        width: calc(100%/5);
+      }
+    }
+  }
 }
