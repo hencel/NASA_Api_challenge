@@ -32,6 +32,9 @@ document.addEventListener("DOMContentLoaded", function() {
       dayImage = data.url;
       img.src = dayImage;
     })
+    .catch(err => {
+      console.log("Something gone wrong...")
+    })
   
   const search = document.querySelector('input[name="searchButton"]'); 
   let userData;
@@ -56,13 +59,28 @@ document.addEventListener("DOMContentLoaded", function() {
         if(element.data[0].media_type === 'image') { //looking for only images (not videos)
           console.log(element.data[0].media_type);
           for(let i=0; i<1; i++) { //make new img for each photos from NASA
-            const newImg = document.createElement('img'); //create
-            newImg.classList.add('galleryItem'); //add class
-            newImg.src = element.links[0].href; //add link to photo
-            galleryArea.appendChild(newImg); //append to gallery Area
+            fetch(element.href) //get json file with addresses to images from each photo
+            .then(response => {
+              return response.json();
+              })
+            .then(el => {
+              const newLink = document.createElement('a');
+              const newImg = document.createElement('img'); //create
+              newLink.href = el[0];
+              newLink.classList.add('galleryItem'); //add class
+              newImg.src = element.links[0].href; //add link to photo
+              newLink.appendChild(newImg);
+              galleryArea.appendChild(newLink); //append to gallery Area
+            })
+            .catch(err => {
+              console.log("Something gone wrong...")
+            })
           } 
         }
       });  
+    })
+    .catch(err => {
+      console.log("Something gone wrong...")
     })
   })
 
