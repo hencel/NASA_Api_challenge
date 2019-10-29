@@ -38,9 +38,13 @@ body {
       align-items: center;
       flex-direction: row;
       flex-wrap: wrap;
-      img {
+      a {
         height: auto;
         width: calc(100%/5);
+      }
+      img {
+        height: auto;
+        width: 100%;
       }
     }
   }
