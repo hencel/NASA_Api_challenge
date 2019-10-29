@@ -10,18 +10,14 @@ Webpage constructed using NASA Api.
 ​
 # Features:
 - interesting pictures from NASA archives
-- knowledge conpedium about cosmos
+- knowledge compedium about the Space
 
 # To do:
 ​
-- build structure of the page
-- access to data
-- picture of the day as main phote on the page
 - menu
-- panel with gallery
 - panel with informations about Exoplanets
 - panel with informations about Asteroids Event Tracker
 ​
 # Install:
 ​
-Not yet :) Give me some time to prepare some content :)
+Just download and open index.html
